@@ -8,3 +8,21 @@ htmlcov/
 *.egg-info/
 dist/
 build/
+.mypy_cache/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
