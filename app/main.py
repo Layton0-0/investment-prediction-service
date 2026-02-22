@@ -1,6 +1,10 @@
 """
 FastAPI 애플리케이션 진입점
 """
+from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+
 import os
 
 from fastapi import FastAPI
