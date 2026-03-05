@@ -23,13 +23,16 @@ AI 예측 및 스코어링 전용 마이크로서비스 (FastAPI, Stateless).
 
 ```bash
 python -m pip install -r requirements.txt
-python -m unittest discover -s tests -v
+python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
-(Windows에서 `pip`가 PATH에 없으면 `python -m pip` 사용.)
+(Windows에서 `python`이 PATH에 없으면 `py -m unittest discover -s tests -p "test_*.py" -v` 사용.)
 
-- `tests/test_api.py`: GET /api/v1/health, POST /api/v1/predict, POST /api/v1/predict/batch
-- `tests/test_preprocessing.py`, `tests/test_lstm_model.py`: 전처리·LSTM 단위 테스트
+- `tests/test_api.py`: GET /api/v1/health, POST /api/v1/predict, POST /api/v1/predict/batch (필요: fastapi)
+- `tests/test_preprocessing.py`: 전처리 단위 테스트 (필요: numpy)
+- `tests/test_lstm_model.py`: LSTM 단위 테스트 (필요: torch)
+
+**실행 조건**: 의존성 미설치 시 `test_api`, `test_lstm_model`은 모듈 로드 실패(ModuleNotFoundError)로 스킵되며, `run-full-qa.ps1`에서는 이 경우 "[SKIP] Python deps missing"으로 처리한다. 전체 테스트를 돌리려면 `pip install -r requirements.txt` 성공이 필요하며, Python 3.10~3.12 환경을 권장한다(Python 3.14 등에서는 numpy/torch 빌드 실패 가능).
 
 ## 보안·운영
 
